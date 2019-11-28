@@ -12,7 +12,6 @@
 <meta content="Metronic Shop UI description" name="description">
 <meta content="Metronic Shop UI keywords" name="keywords">
 <meta content="keenthemes" name="author">
-
 <base href="/">
 <!-- link to image for socio -->
 <link rel="shortcut icon" href="favicon.ico">
@@ -70,6 +69,39 @@
 	href="${pageContext.request.contextPath}/assets/admin/layout/css/table.css"
 	rel="stylesheet" type="text/css" />
 <!-- Theme styles END -->
+
+
+
+
+
+<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/assets/new/images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/vendor/slick/slick.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/vendor/MagnificPopup/magnific-popup.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/css/util.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/new/css/main.css">
 </head>
 <!-- Head END -->
 </html>

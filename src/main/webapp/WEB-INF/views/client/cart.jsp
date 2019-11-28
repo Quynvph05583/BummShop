@@ -7,233 +7,112 @@
 <html lang="en">
 <jsp:include page="../common/clientCommon/head.jsp"></jsp:include>
 <!-- Body BEGIN -->
-<body class="ecommerce">
-	<jsp:include page="../common/clientCommon/menu.jsp"></jsp:include>
-	<div class="padding-list"></div>
+<body class="animsition">
+<jsp:include page="../client/bt/header.jsp"></jsp:include>
 
-	<div class="main">
-		<div class="container">
-			<!-- BEGIN SIDEBAR & CONTENT -->
-			<div class="row margin-bottom-40">
-				<!-- BEGIN CONTENT -->
-				<div class="col-md-12 col-sm-12">
-					<h1>
-						<spring:message code="label.cart.shoppingcart" />
-					</h1>
-					<div class="goods-page">
-						<div class="goods-data clearfix">
-							<div class="table-wrapper-responsive">
-								<table summary="Shopping cart">
-									<tr>
-										<th class="goods-page-image"><spring:message
-												code="label.cart.image" /></th>
-										<th class="goods-page-description"><spring:message
-												code="label.cart.detail" /></th>
-										<th class="goods-page-ref-no"><spring:message
-												code="label.cart.name" /></th>
-										<th class="goods-page-quantity"><spring:message
-												code="label.cart.quantity" /></th>
-										<th class="goods-page-price"><spring:message
-												code="label.cart.price" /></th>
-										<th class="goods-page-total" colspan="2"><spring:message
-												code="label.cart.subtotal" /></th>
-									</tr>
-									<c:forEach var="cart" items="${sessionScope.listCart}">
-										<tr>
-											<td class="goods-page-image"><a href="#"><img
-													src="${pageContext.request.contextPath}/images/${cart.product.image}"
-													alt="Berry Lace Dress"></a></td>
-											<td class="goods-page-description">
-												<h3>
-													<span>${cart.product.detail}</span>
-												</h3>
-											</td>
-											<td class="goods-page-ref-no">${cart.product.name}</td>
-											<td class="goods-page-quantity">
-												<div class="product-quantity">
-													<input id="product-quantity" type="text"
-														value="${cart.quantity}" class="form-control input-sm">
-												</div>
-											</td>
-											<td class="goods-page-price"><strong>${cart.product.price}<span>
-														VND</span></strong></td>
-											<td class="goods-page-total"><strong>${cart.quantity * cart.product.price}<span>
-														VND</span></strong></td>
-											<td class="del-goods-col"><a data-toggle="modal"
-												class="icon-delete" href="#popupDelete_${cart.product.id}">&nbsp;</a>
-											</td>
-										</tr>
-										<!-- Modal -->
-										<div class="modal fade popupDelete"
-											id="popupDelete_${cart.product.id}" tabindex="-1"
-											role="dialog" aria-labelledby="exampleModalLabel"
-											aria-hidden="true">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h4 class="modal-title" id="exampleModalLabel">
-															<strong>Confirm Delete</strong>
-														</h4>
-													</div>
-													<div class="modal-body">
-														<b>Are you sure you want to delete this product? </b>
-													</div>
-													<div class="modal-footer">
-														<a type="button" class="btn btn-danger"
-															href="${pageContext.request.contextPath}/delete/${cart.product.id}">Delete</a>
-														<button type="button" class="btn btn-secondary"
-															data-dismiss="modal">Close</button>
-													</div>
-												</div>
-											</div>
-										</div>
-									</c:forEach>
-								</table>
-							</div>
-
-							<div class="shopping-total">
-								<ul>
-									<li class="shopping-total-price"><em><spring:message
-												code="label.cart.total" /></em> <strong class="price">${totalPrice}<span>
-												VND</span></strong></li>
-								</ul>
-							</div>
-						</div>
-						<a class="btn btn-primary" data-toggle="modal" class="icon-delete"
-							href="#popupDelete_${cart.product.id}"><spring:message
-								code="label.cart.payment" /><i class="fa fa-check"></i> </a>
-
-						<!-- Modal -->
-						<div class="modal fade popupDelete"
-							id="popupDelete_${cart.product.id}" tabindex="-1" role="dialog"
-							aria-labelledby="exampleModalLabel" aria-hidden="true">
-							<div class="modal-dialog modal-lg" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h4 class="modal-title" id="exampleModalLabel">
-											<strong><spring:message code="label.popup.titel.payment" /></strong>
-										</h4>
-									</div>
-									<form action="${pageContext.request.contextPath}/payment"
-										method="POST" class="form-horizontal">
-										<div class="modal-body">
-											<div class="form-body">
-												<div class="form-group">
-													<label class="col-md-3 control-label"><spring:message code="label.popup.username" /></label>
-													<div class="col-md-6">
-														<c:if test="${currentUser == null}">
-															<input type="text" readonly name="username"
-																value="Khách Vãn Lai" class="form-control"
-																placeholder="UseName">
-														</c:if>
-														<c:if test="${currentUser != null}">
-															<input type="text" readonly name="username"
-																value="${currentUser.username}" class="form-control"
-																placeholder="UseName">
-														</c:if>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-3 control-label"><spring:message code="label.popup.address" /></label>
-													<div class="col-md-6">
-														<input required="required" type="text" name="address" class="form-control"
-															placeholder="Address">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-3 control-label"><spring:message code="label.popup.name" /></label>
-													<div class="col-md-6">
-														<c:if test="${currentUser == null}">
-															<input type="text" name="name" class="form-control"
-																placeholder="Name">
-														</c:if>
-														<c:if test="${currentUser != null}">
-															<input type="text" name="name" readonly
-																value="${currentUser.name}" class="form-control"
-																placeholder="Name">
-														</c:if>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-3 control-label"><spring:message code="label.popup.phone" /></label>
-													<div class="col-md-6">
-														<c:if test="${currentUser == null}">
-															<input type="text" name="phone" class="form-control"
-																placeholder="Address">
-														</c:if>
-														<c:if test="${currentUser != null}">
-															<input type="text" name="phone"
-																value="${currentUser.phone}" class="form-control"
-																placeholder="Phone">
-														</c:if>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-3 control-label"><spring:message code="label.popup.email" /></label>
-													<div class="col-md-6">
-														<c:if test="${currentUser == null}">
-															<input type="text" name="email" class="form-control"
-																placeholder="Email">
-														</c:if>
-														<c:if test="${currentUser != null}">
-															<input type="text" name="email"
-																value="${currentUser.email}" class="form-control"
-																placeholder="Email">
-														</c:if>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-3 control-label"><spring:message code="label.popup.totalprice" /></label>
-													<div class="col-md-6">
-														<div class="input-icon right">
-															<input type="number" readonly name="total"
-																value="${totalPrice}" class="form-control"
-																placeholder="Right icon">
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="modal-footer">
-											<button type="submit" class="btn btn-danger"><spring:message code="label.button.submit" /></button>
-											<button type="button" class="btn btn-secondary"
-												data-dismiss="modal"><spring:message code="label.confirm.delete.closed" /></button>
-										</div>
-									</form>
-
-
-								</div>
-							</div>
-						</div>
-
-						<a href="${pageContext.request.contextPath}/home"  class="btn btn-default" type="button">
-							<spring:message code="label.cart.continueshopping" />
-							<i class="fa fa-shopping-cart"></i>
-						</a>
-					</div>
-				</div>
-				<!-- END CONTENT -->
-			</div>
-			<!-- END SIDEBAR & CONTENT -->
-
-			<!-- BEGIN SIMILAR PRODUCTS -->
-			<div class="row margin-bottom-40"></div>
-			<!-- END SIMILAR PRODUCTS -->
-		</div>
-	</div>
-
-	<!-- BEGIN FOOTER -->
-	<div class="footer footer-position">
+	<!-- Shoping Cart -->
+	<form class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
-				<!-- BEGIN COPYRIGHT -->
-				<div class="col-md-6 col-sm-6 padding-top-10">2019 © BummShop</div>
-				<!-- END COPYRIGHT -->
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+					<div class="m-l-25 m-r--38 m-lr-0-xl">
+						<div class="wrap-table-shopping-cart">
+							<table class="table-shopping-cart">
+								<tr class="table_head">
+									<th class="column-1">Product</th>
+									<th class="column-2"></th>
+									<th class="column-3">Price</th>
+									<th class="column-4">Quantity</th>
+									<th class="column-5">Total</th>
+								</tr>
+
+								<tr class="table_row">
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<img src="images/item-cart-04.jpg" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">Fresh Strawberries</td>
+									<td class="column-3">$ 36.00</td>
+									<td class="column-4">
+										<div class="wrap-num-product flex-w m-l-auto m-r-0">
+											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+
+											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
+
+											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+									</td>
+									<td class="column-5">$ 36.00</td>
+								</tr>
+
+								<tr class="table_row">
+									<td class="column-1">
+										<div class="how-itemcart1">
+											<img src="images/item-cart-05.jpg" alt="IMG">
+										</div>
+									</td>
+									<td class="column-2">Lightweight Jacket</td>
+									<td class="column-3">$ 16.00</td>
+									<td class="column-4">
+										<div class="wrap-num-product flex-w m-l-auto m-r-0">
+											<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-minus"></i>
+											</div>
+
+											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">
+
+											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<i class="fs-16 zmdi zmdi-plus"></i>
+											</div>
+										</div>
+									</td>
+									<td class="column-5">$ 16.00</td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+
+							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+								Update Cart
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+						<h4 class="mtext-109 cl2 p-b-30">
+							Cart Totals
+						</h4>
+						<div class="flex-w flex-t p-t-27 p-b-33">
+							<div class="size-208">
+								<span class="mtext-101 cl2">
+									Total:
+								</span>
+							</div>
+
+							<div class="size-209 p-t-1">
+								<span class="mtext-110 cl2">
+									$79.65
+								</span>
+							</div>
+						</div>
+
+						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+							Proceed to Checkout
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<!-- END FOOTER -->
-	<jsp:include page="../common/clientCommon/footerCart.jsp"></jsp:include>
+	</form>
+<jsp:include page="../client/bt/footer.jsp"></jsp:include>
 	<script type="text/javascript">
 		$(document)
 				.ready(
@@ -256,6 +135,43 @@
 											});
 						});
 	</script>
+		<script src="${pageContext.request.contextPath}/assets/new/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="${pageContext.request.contextPath}/assets/new/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="${pageContext.request.contextPath}/assets/new/vendor/bootstrap/js/popper.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/new/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="${pageContext.request.contextPath}/assets/new/vendor/select2/select2.min.js"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="${pageContext.request.contextPath}/assets/new/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
+	<script src="${pageContext.request.contextPath}/assets/new/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			$(this).css('position','relative');
+			$(this).css('overflow','hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed: 1,
+				scrollingThreshold: 1000,
+				wheelPropagation: false,
+			});
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+<!--===============================================================================================-->
+	<script src="${pageContext.request.contextPath}/assets/new/js/main.js"></script>
 </body>
 <!-- END BODY -->
 </html>

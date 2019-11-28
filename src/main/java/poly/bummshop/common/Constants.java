@@ -20,6 +20,7 @@ public interface Constants {
 	final String MESSAGE = "message";
 	final String ROLE_KH = "KH";
 	final String ADDTRIBUTE_USER = "USER";
+	final String BODYSKINCARE="/bodyskincare";
 
 	// Register
 	final String REGISTE_SUCCESS = "Chúc mừng bạn đã đăng ký thành công !";
